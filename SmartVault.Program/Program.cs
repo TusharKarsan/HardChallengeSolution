@@ -1,6 +1,7 @@
-﻿using System.Data.SQLite;
-using System;
+﻿using Dapper;
 using Microsoft.Extensions.Configuration;
+using System;
+using System.Data.SQLite;
 using System.IO;
 using System.Text;
 
@@ -20,12 +21,17 @@ namespace SmartVault.Program
             }
 
             WriteEveryThirdFileToFile(configuration, Convert.ToInt32(args[0]));
-            GetAllFileSizes();
+            GetAllFileSizes(configuration);
         }
 
-        private static void GetAllFileSizes()
+        private static void GetAllFileSizes(IConfiguration configuration)
         {
-            // TODO: Implement functionality
+            Console.WriteLine(Environment.CurrentDirectory);
+            using var con = new SQLiteConnection(string.Format(configuration?["ConnectionStrings:DefaultConnection"] ?? "", configuration?["DatabaseFileName"]));
+
+            long total = con.ExecuteScalar<long>("SELECT SUM(Length) FROM Document");
+
+            Console.WriteLine($"Total file size is {total:N}");
         }
 
         private static void WriteEveryThirdFileToFile(IConfiguration configuration, int accountId)
