@@ -22,6 +22,10 @@ This project will be used to fulfill some of the requirements that require outpu
 
 1. Speed up the execution of the SmartVault.DataGeneration tool. Developers have complained that this takes a long time to create a test database.
 
+*Note by Tushar on 2023-05-08*
+- using prepared statements, and
+- insert batch in a transaction.
+
 2. All business objects should have a created on date.
 
 3. Implement a way to output the contents of every third file of an account to a single file.
