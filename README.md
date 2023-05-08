@@ -30,6 +30,7 @@ This project will be used to fulfill some of the requirements that require outpu
 
 *Note by Tushar on 2023-05-08*
 - Updated Business Object Schema
+- Not sure how to change *Business Objects* but probably using class inheritance.
 
 3. Implement a way to output the contents of every third file of an account to a single file.
 
@@ -37,11 +38,13 @@ This project will be used to fulfill some of the requirements that require outpu
 - Added a `FileNumber` column which is the file-count
 - File numbers start at 0 so every 3rd file is `WHERE FileNumber = 2`
 - Mistake, this would help get 3rd file for every account
+- Please see code..
 
 4. Implement a way to get the total file size of all files.
 
 *Note by Tushar on 2023-05-08*
 - SELECT SUM(Length) FROM Document;
+- Please see code..
 
 5. Add a new business object to support OAuth integrations (No need to implement an actual OAuth integration, just the boilerplate necessary in the given application)
 
