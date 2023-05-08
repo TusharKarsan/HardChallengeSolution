@@ -31,38 +31,34 @@ namespace SmartVault.Program
         private static void WriteEveryThirdFileToFile(IConfiguration configuration, int accountId)
         {
             Console.WriteLine(Environment.CurrentDirectory);
-            var con = new SQLiteConnection(string.Format(configuration?["ConnectionStrings:DefaultConnection"] ?? "", configuration?["DatabaseFileName"]));
+            using var con = new SQLiteConnection(string.Format(configuration?["ConnectionStrings:DefaultConnection"] ?? "", configuration?["DatabaseFileName"]));
             con.Open();
 
             string stm = $"SELECT * FROM Document WHERE AccountId = {accountId}";
 
             using var cmd = new SQLiteCommand(stm, con);
             using SQLiteDataReader rdr = cmd.ExecuteReader();
+            using Stream output = new FileStream("output.txt", FileMode.Create, FileAccess.Write, FileShare.None);
 
-            using (Stream output = new FileStream("output.txt", FileMode.Create, FileAccess.Write, FileShare.None))
+            int count = 0;
+            while (rdr.Read())
             {
-                int count = 0;
-                while (rdr.Read())
+                if (++count == 3)
                 {
-                    if (++count == 3)
-                    {
-                        count = 0;
-                        var file = rdr.GetString(3);
-                        Console.WriteLine($"Appending {file}");
+                    count = 0;
+                    var file = rdr.GetString(3);
+                    Console.WriteLine($"Appending {file}");
 
-                        /* Assuming each file content is different */
+                    // Write file name for debugging.
+                    var bytes = Encoding.ASCII.GetBytes(Environment.NewLine + file + Environment.NewLine);
+                    output.Write(bytes);
 
-                        // Write file name for debugging.
-                        var bytes = Encoding.ASCII.GetBytes(Environment.NewLine + file + Environment.NewLine);
-                        output.Write(bytes);
-
-                        using (Stream input = File.OpenRead(rdr.GetString(4)))
-                        {
-                            input.CopyTo(output);
-                        }
-                    }
+                    using Stream input = File.OpenRead(rdr.GetString(4));
+                    input.CopyTo(output);
                 }
             }
+
+            con.Close();
         }
     }
 }
