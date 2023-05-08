@@ -2,11 +2,13 @@
 <businessObject>
 	<propertyGroup>
 		<property name="Id" type="int" />
+		<property name="CreatedOn" type="System.DateTime" />
 		<property name="Name" type="string" />
 	</propertyGroup>
 	<script>
 		CREATE TABLE Account (
 			Id INTEGER PRIMARY KEY,
+			CreatedOn Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
 			Name TEXT
 		);
 	</script>

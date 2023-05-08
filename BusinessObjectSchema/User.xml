@@ -2,6 +2,7 @@
 <businessObject>
 	<propertyGroup>
 		<property name="Id" type="int" />
+		<property name="CreatedOn" type="System.DateTime" />
 		<property name="FirstName" type="string" />
 		<property name="LastName" type="string" />
 		<property name="DateOfBirth" type="System.DateTime" />
@@ -12,6 +13,7 @@
 	<script>
 		CREATE TABLE User (
 			Id INTEGER PRIMARY KEY,
+			CreatedOn Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
 			FirstName TEXT,
 			LastName TEXT,
 			DateOfBirth TEXT,

@@ -28,6 +28,9 @@ This project will be used to fulfill some of the requirements that require outpu
 
 2. All business objects should have a created on date.
 
+*Note by Tushar on 2023-05-08*
+- Updated Business Object Schema
+
 3. Implement a way to output the contents of every third file of an account to a single file.
 
 4. Implement a way to get the total file size of all files.

@@ -2,6 +2,7 @@
 <businessObject>
 	<propertyGroup>
 		<property name="Id" type="int" />
+		<property name="CreatedOn" type="System.DateTime" />
 		<property name="Name" type="string" />
 		<property name="FilePath" type="string" />
 		<property name="Length" type="int" />
@@ -10,6 +11,7 @@
 	<script>
 		CREATE TABLE Document (
 			Id INTEGER PRIMARY KEY,
+			CreatedOn Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
 			Name TEXT,
 			FilePath TEXT,
 			Length INTEGER,
