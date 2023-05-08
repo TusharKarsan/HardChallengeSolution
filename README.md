@@ -36,6 +36,7 @@ This project will be used to fulfill some of the requirements that require outpu
 *Note by Tushar on 2023-05-08*
 - Added a `FileNumber` column which is the file-count
 - File numbers start at 0 so every 3rd file is `WHERE FileNumber = 2`
+- Mistake, this would help get 3rd file for every account
 
 4. Implement a way to get the total file size of all files.
 
