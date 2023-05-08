@@ -33,9 +33,19 @@ This project will be used to fulfill some of the requirements that require outpu
 
 3. Implement a way to output the contents of every third file of an account to a single file.
 
+*Note by Tushar on 2023-05-08*
+- Added a `FileNumber` column which is the file-count
+- File numbers start at 0 so every 3rd file is `WHERE FileNumber = 2`
+
 4. Implement a way to get the total file size of all files.
 
+*Note by Tushar on 2023-05-08*
+- SELECT SUM(Length) FROM Document;
+
 5. Add a new business object to support OAuth integrations (No need to implement an actual OAuth integration, just the boilerplate necessary in the given application)
+
+*Note by Tushar on 2023-05-08*
+- Not done.
 
 6. Commit your code to a github repository and share the link back with us
 
